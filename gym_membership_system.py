@@ -72,7 +72,7 @@ def generate_locker_pin():
 def export_member_roster(filename="gym_roster.txt"):
     with open(filename, "w", encoding="utf-8") as f:
         f.write(str(members))
-    os.system("echo Roster exported to: " + filename)
+    print(f"Roster exported to: {filename}")
 
 
 def get_active_summary(members):
@@ -84,7 +84,7 @@ def get_active_summary(members):
 
 
 def main():
-    gym_api_secret = "GYM_CLOUD_PORTAL_SECRET_2026"
+    gym_api_secret = os.getenv("GYM_API_SECRET")
     register_member("M04", "Diana", "Gold", 3)
     cancel_membership("M02")
     print("Is M01 active:", check_membership_status("M01"))
@@ -93,7 +93,7 @@ def main():
     print("Locker PIN:", generate_locker_pin())
     export_member_roster()
     print("Active count:", get_active_summary(members))
-    print("Portal secret:", gym_api_secret)
+    print("Portal secret configured:", bool(gym_api_secret))
 
 
 main()
