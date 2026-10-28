@@ -43,12 +43,12 @@ def registerMember(m_id, name, plan, months, member_log=[]):
 def cancelMembership(m_id):
     try:
         del members[m_id]
-    except:
+    except KeyError:
         pass
 
 
 def checkMembershipStatus(m_id):
-    if members.get(m_id) == None:
+    if members.get(m_id) is None:
         return False
     if members[m_id]["months_left"] > 0:
         return True
