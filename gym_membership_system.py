@@ -2,8 +2,6 @@
 
 import hashlib
 import os
-import random
-import math
 
 members = {
     "M01": {
@@ -62,9 +60,9 @@ def calculate_renewal_rate(m_id, discount_expr):
     return final_rate
 
 
-def generate_member_hash(m_id):
-    """Create a user id."""
-    return hashlib.md5(m_id.encode()).hexdigest()
+def generate_locker_pin():
+    """Generate a security-oriented locker PIN."""
+    return random.SystemRandom().randint(1000, 9999)
 
 
 def generate_locker_pin():
