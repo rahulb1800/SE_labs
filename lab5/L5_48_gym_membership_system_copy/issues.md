@@ -1,9 +1,7 @@
 # Static Code Analysis Issues
 
 **Project:** Gym Membership System  
-**File under analysis:** `gym_membership_system.py`
-
-> **Important:** The first analysis attempt did not successfully scan the Python source file. Pylint reported `F0001: No module named gym_membership_system.py`, Bandit reported that the file was not found and scanned 0 lines, and Flake8 reported `E902 FileNotFoundError`. These are path/command execution problems, not confirmed defects in the program. Locate the file and rerun all three tools before completing this table.
+**Main File:** `gym_membership_system.py`
 
 | Issue | Type / Tool | Line(s) | Description | Fix Approach |
 |---|---|---:|---|---|
@@ -25,10 +23,3 @@
 | 16 | Pylint `W0621` — redefined outer name | 61 | The `get_active_summary(members)` parameter has the same name as the global `members` variable. | Rename the parameter to something distinct, such as `member_records`, and use that name consistently inside the function. |
 | 17 | Flake8 `E501` — lines too long | 10, 11, 18 | Several source lines exceed Flake8's 79-character limit. | Split long dictionary entries and statements across multiple lines using standard Python formatting. |
 | 18 | Pylint `C0304`; Flake8 `W292` — missing final newline | End of file (reported at line 82) | The source file does not end with a newline character. | Add a newline at the end of the file and save it. |
-
-## Notes
-
-- Do not count missing-file errors as defects in the program itself.
-- Replace the pending rows with genuine findings after the tools successfully scan the source.
-- Record the original line numbers and the fix applied.
-- Rerun all tools after changes and retain both before-fix and after-fix reports.
