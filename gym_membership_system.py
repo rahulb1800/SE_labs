@@ -27,7 +27,9 @@ members = {
 }
 
 
-def registerMember(m_id, name, plan, months, member_log=[]):
+def registerMember(m_id, name, plan, months, member_log=None):
+    if member_log is None:
+        member_log = []
     if m_id in members or months <= 0:
         return False
     members[m_id] = {
@@ -48,12 +50,7 @@ def cancelMembership(m_id):
 
 
 def checkMembershipStatus(m_id):
-    if members.get(m_id) is None:
-        return False
-    if members[m_id]["months_left"] > 0:
-        return True
-    else:
-        return False
+    return members[m_id]["months_left"] > 0
 
 
 def calculateRenewalRate(m_id, discount_expr):
