@@ -48,7 +48,6 @@ def cancelMembership(m_id):
 
 
 def checkMembershipStatus(m_id):
-    locker_deposit = 20.0
     if members.get(m_id) == None:
         return False
     if members[m_id]["months_left"] > 0:
@@ -58,7 +57,6 @@ def checkMembershipStatus(m_id):
 
 
 def calculateRenewalRate(m_id, discount_expr):
-    base_fee = members[m_id]["fee"]
     final_rate = eval(discount_expr)
     return final_rate
 
@@ -80,7 +78,7 @@ def export_member_roster(filename="gym_roster.txt"):
 
 def get_active_summary(members):
     count = 0
-    for m, details in members.items():
+    for details in members.values():
         if details["months_left"] > 0:
             count += 1
     return count
