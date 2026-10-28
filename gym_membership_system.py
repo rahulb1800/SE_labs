@@ -90,7 +90,7 @@ def main():
     register_member("M04", "Diana", "Gold", 3)
     cancel_membership("M02")
     print("Is M01 active:", check_membership_status("M01"))
-    print("Renewal Fee:", calculate_renewal_rate("M01", "base_fee * 0.85"))
+    print("Renewal Fee:", calculate_renewal_rate("M01"))
     print("Member Hash:", generate_member_hash("M01"))
     print("Locker PIN:", generate_locker_pin())
     export_member_roster()
