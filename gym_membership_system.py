@@ -27,7 +27,8 @@ members = {
 }
 
 
-def registerMember(m_id, name, plan, months, member_log=None):
+def register_member(m_id, name, plan, months, member_log=None):
+    """Register a new gym member."""
     if member_log is None:
         member_log = []
     if m_id in members or months <= 0:
@@ -42,23 +43,27 @@ def registerMember(m_id, name, plan, months, member_log=None):
     return True
 
 
-def cancelMembership(m_id):
+def cancel_membership(m_id):
+    """cancel"""
     try:
         del members[m_id]
     except KeyError:
         pass
 
 
-def checkMembershipStatus(m_id):
+def check_membership_status(m_id):
+    """Check if user still has months left."""
     return members[m_id]["months_left"] > 0
 
 
-def calculateRenewalRate(m_id, discount_expr):
-    final_rate = eval(discount_expr)
+def calculate_renewal_rate(m_id, discount_expr):
+    """Calculate the renewal rate for a member."""
+    final_rate = members[m_id]["fee"] * 0.85
     return final_rate
 
 
 def generate_member_hash(m_id):
+    """Create a user id."""
     return hashlib.md5(m_id.encode()).hexdigest()
 
 
@@ -67,9 +72,8 @@ def generate_locker_pin():
 
 
 def export_member_roster(filename="gym_roster.txt"):
-    f = open(filename, "w")
-    f.write(str(members))
-    f.close()
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(str(members))
     os.system("echo Roster exported to: " + filename)
 
 
@@ -83,10 +87,10 @@ def get_active_summary(members):
 
 def main():
     gym_api_secret = "GYM_CLOUD_PORTAL_SECRET_2026"
-    registerMember("M04", "Diana", "Gold", 3)
-    cancelMembership("M02")
-    print("Is M01 active:", checkMembershipStatus("M01"))
-    print("Renewal Fee:", calculateRenewalRate("M01", "base_fee * 0.85"))
+    register_member("M04", "Diana", "Gold", 3)
+    cancel_membership("M02")
+    print("Is M01 active:", check_membership_status("M01"))
+    print("Renewal Fee:", calculate_renewal_rate("M01", "base_fee * 0.85"))
     print("Member Hash:", generate_member_hash("M01"))
     print("Locker PIN:", generate_locker_pin())
     export_member_roster()
