@@ -1,8 +1,6 @@
 # Lab 5: Static Code Analysis — Gym Membership System
 
-**Your file:** `gym_membership_system.py`
-
-Follow the lab handout for the full instructions.
+**Update from Clone: Do not use the original folder, open the copy folder** `Main code is in gym_membership_system.py`
 
 ## About the program
 
